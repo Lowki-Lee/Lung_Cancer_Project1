@@ -1,7 +1,7 @@
 import sys
 import os
 
-# --- 新增这段代码 ---
+
 # 获取当前文件的目录 (src)
 current_dir = os.path.dirname(os.path.abspath(__file__))
 # 获取父目录 (Lung_Cancer_Project)
