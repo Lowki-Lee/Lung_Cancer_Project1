@@ -41,18 +41,18 @@ class CancerPredictor:
         X_train, self.X_test, y_train, self.y_test = train_test_split(X, y, test_size=0.2, random_state=42)
         
         self.model.fit(X_train, y_train)
-        print("模型训练完成。")
+        print("Model training completed")
 
     def evaluate_model(self):
         """评估模型并展示结果"""
         if self.X_test is None:
-            print("请先训练模型。")
+            print("Please train the model first.")
             return
 
         y_pred = self.model.predict(self.X_test)
         accuracy = accuracy_score(self.y_test, y_pred)
-        print(f"模型准确率: {accuracy:.2f}")
-        print("\n分类报告:")
+        print(f"Model accuracy: {accuracy:.2f}")
+        print("\nClassification Report:")
         print(classification_report(self.y_test, y_pred))
 
         # [Part 1] Requirement: Use Matplotlib/Seaborn
@@ -77,7 +77,7 @@ class CancerPredictor:
         # 简单的异常处理，确保输入长度正确
         if len(features) != 15: # 15个特征
              # [Part 1] Requirement: Exception handling (Part 2)
-            raise ValueError(f"特征数量不匹配，需要15个，提供了 {len(features)} 个")
+            raise ValueError(f"The number of features is mismatched; 15 are needed, but {len(features)} are provided.")
         
         probability = self.model.predict_proba([features])[0][1]
         return probability
