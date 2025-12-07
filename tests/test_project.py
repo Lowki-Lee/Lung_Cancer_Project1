@@ -1,7 +1,6 @@
 import sys
 import os
 
-# --- 新增这段代码 ---
 # 获取当前文件的目录 (src)
 current_dir = os.path.dirname(os.path.abspath(__file__))
 # 获取父目录 (Lung_Cancer_Project)
@@ -23,7 +22,7 @@ def mock_csv(tmp_path):
         'AGE': [60, 50, 70],
         'LUNG_CANCER': ['YES', 'NO', 'YES'],
         'SMOKING': [2, 1, 2] # 2=Yes, 1=No
-        # ... 可以添加更多列
+
     }
     df = pd.DataFrame(d)
     file_path = tmp_path / "test_data.csv"
