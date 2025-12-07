@@ -14,14 +14,14 @@ class PatientData:
         """读取CSV文件，包含异常处理"""
         # [Part 2] Requirement: Built-in library (os)
         if not os.path.exists(self.file_path):
-            raise FileNotFoundError(f"文件未找到: {self.file_path}")
+            raise FileNotFoundError(f"file not found: {self.file_path}")
         
         try:
             self.data = pd.read_csv(self.file_path)
-            print(f"成功加载数据，共 {len(self.data)} 条记录。")
+            print(f"Data loaded successfully, {len(self.data)} records.")
         except Exception as e:
             # [Part 1] Requirement: Exception handling
-            raise ValueError(f"读取CSV文件时出错: {e}")
+            raise ValueError(f"Error reading CSV file: {e}")
 
     def clean_data(self):
         """数据清洗和预处理"""
@@ -31,7 +31,7 @@ class PatientData:
         # 1. 去除重复值 (参考Kaggle分析)
         initial_count = len(self.data)
         self.data.drop_duplicates(inplace=True)
-        print(f"已去除重复数据: {initial_count - len(self.data)} 条")
+        print(f"Duplicate data removed: {initial_count - len(self.data)} records")
 
         # 2. 标签编码 (Mapping)
         # 根据Kaggle分析: YES=2, NO=1. 我们通常将其转换为 1 和 0 以便于机器学习
@@ -48,7 +48,7 @@ class PatientData:
         for col in columns_to_fix:
             self.data[col] = self.data[col].map({2: 1, 1: 0})
 
-        print("数据清洗完成。")
+        print("Data cleaning completed.")
 
     def get_features_and_target(self):
         """分离特征(X)和目标(y)"""
@@ -64,7 +64,7 @@ class PatientData:
 
 # [Part 2] Requirement: if __name__ == "__main__"
 if __name__ == "__main__":
-    # 简单测试
+    # 测试
     try:
         # 假设你在项目根目录下运行，需要根据实际路径调整
         pd_obj = PatientData("data/survey lung cancer.csv")
