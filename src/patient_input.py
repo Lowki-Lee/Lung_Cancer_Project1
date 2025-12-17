@@ -70,3 +70,27 @@ def _get_expected_features_from_predictor(predictor: Any) -> Optional[List[str]]
             if isinstance(val, pd.Index):
                 return list(val.tolist())
     return None
+
+def _ask_manual_input(feature_names: List[str]) -> Dict[str, Any]:
+    """Request each feature value from the user in an interactive manner and return a dictionary."""
+    print("Please enter patient data for the following features (press Enter):")
+    patient: Dict[str, Any] = {}
+    for feat in feature_names:
+        raw = input(f"  {feat}: ").strip()
+        if raw == "":
+            val = None
+        else:
+            if raw.lower() in {"y", "yes", "true", "t", "m", "male"}:
+                val = 1
+            elif raw.lower() in {"n", "no", "false", "f", "female"}:
+                val = 0
+            else:
+                try:
+                    if "." in raw:
+                        val = float(raw)
+                    else:
+                        val = int(raw)
+                except Exception:
+                    val = raw
+        patient[feat] = val
+    return patient
