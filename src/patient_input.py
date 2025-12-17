@@ -36,3 +36,37 @@ def _extract_probability(pred: Any) -> float:
     if arr.ndim == 2:
         return float(arr[0, -1])
     raise ValueError(f"Unrecognized prediction format: {type(pred)}")
+
+def _get_expected_features_from_predictor(predictor: Any) -> Optional[List[str]]:
+    """Try to infer the expected feature names from the predictor or its internal model."""
+    attrs = [
+        "feature_names",
+        "feature_names_in_",
+        "feature_names_",
+        "features",
+        "expected_features",
+        "required_features",
+        "feature_columns",
+        "columns",
+        "feature_names_in",
+    ]
+    for attr in attrs:
+        val = getattr(predictor, attr, None)
+        if val is None:
+            continue
+        if isinstance(val, (list, tuple, np.ndarray, set)):
+            return list(val)
+        if isinstance(val, pd.Index):
+            return list(val.tolist())
+    # try nested 'model' attribute (common pattern)
+    nested = getattr(predictor, "model", None)
+    if nested is not None and nested is not predictor:
+        for attr in attrs:
+            val = getattr(nested, attr, None)
+            if val is None:
+                continue
+            if isinstance(val, (list, tuple, np.ndarray, set)):
+                return list(val)
+            if isinstance(val, pd.Index):
+                return list(val.tolist())
+    return None
