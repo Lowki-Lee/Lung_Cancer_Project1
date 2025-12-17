@@ -135,22 +135,22 @@ This project must provide a callable function predict_new_patient(DataFrame) -> 
     if choice not in {"1", "2"}:
         print("Invalid choice, defaulting to 2 (manual input).")
         choice = "2"
-
-        if choice == "1":
-            path = input("Enter CSV file path: ").strip()
-            patient_raw = _read_patient_from_csv(path)
-        else:
-            feature_names = _get_expected_features_from_predictor(project) or []
+    if choice == "1":
+        path = input("Enter CSV file path: ").strip()
+        patient_raw = _read_patient_from_csv(path)
+    else:
+        print("2")
+        feature_names = _get_expected_features_from_predictor(project) or []
+        if not feature_names:
+            print(
+                "Could not infer feature names from the project. Please provide comma-separated feature names,"
+                " for example: age,sex,smoking_history"
+            )
+            raw = input("Feature names (comma-separated): ").strip()
+            feature_names = [s.strip() for s in raw.split(",") if s.strip()]
             if not feature_names:
-                print(
-                    "Could not infer feature names from the project. Please provide comma-separated feature names,"
-                    " for example: age,sex,smoking_history"
-                )
-                raw = input("Feature names (comma-separated): ").strip()
-                feature_names = [s.strip() for s in raw.split(",") if s.strip()]
-                if not feature_names:
-                    raise ValueError("No feature names provided.")
-            patient_raw = _ask_manual_input(feature_names)
+                raise ValueError("No feature names provided.")
+        patient_raw = _ask_manual_input(feature_names)
 
     patient = []
     for i in patient_raw:

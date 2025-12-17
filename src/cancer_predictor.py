@@ -1,6 +1,7 @@
 import sys
 import os
 
+import pandas as pd
 
 # 获取当前文件的目录 (src)
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -78,6 +79,7 @@ class CancerPredictor:
         if len(features) != 15: # 15个特征
              # [Part 1] Requirement: Exception handling (Part 2)
             raise ValueError(f"The number of features is mismatched; 15 are needed, but {len(features)} are provided.")
-        
-        probability = self.model.predict_proba([features])[0][1]
+
+        X_input = pd.DataFrame([features], columns=self.model.feature_names_in_)
+        probability = self.model.predict_proba(X_input)[0][1]
         return probability
