@@ -3,7 +3,7 @@ import os
 
 class PatientData:
     """
-    该类负责管理患者数据集，包括加载、清洗和预处理。
+    This class is responsible for managing patient datasets, including loading, cleaning, and preprocessing.
     """
     def __init__(self, file_path):
         self.file_path = file_path
@@ -11,7 +11,7 @@ class PatientData:
         self._load_data()
 
     def _load_data(self):
-        """读取CSV文件，包含异常处理"""
+        """Reading CSV files, including exception handling"""
         # [Part 2] Requirement: Built-in library (os)
         if not os.path.exists(self.file_path):
             raise FileNotFoundError(f"file not found: {self.file_path}")
@@ -24,25 +24,25 @@ class PatientData:
             raise ValueError(f"Error reading CSV file: {e}")
 
     def clean_data(self):
-        """数据清洗和预处理"""
+        """Data cleansing and preprocessing"""
         if self.data is None:
             return
 
-        # 1. 去除重复值 (参考Kaggle分析)
+        # 1. Remove duplicate values (referencing Kaggle analysis)
         initial_count = len(self.data)
         self.data.drop_duplicates(inplace=True)
         print(f"Duplicate data removed: {initial_count - len(self.data)} records")
 
-        # 2. 标签编码 (Mapping)
-        # 根据Kaggle分析: YES=2, NO=1. 我们通常将其转换为 1 和 0 以便于机器学习
+        # 2. Tag Mapping
+        # According to Kaggle analysis: YES=2, NO=1. We typically convert these to 1 and 0 for machine learning purposes.
         # GENDER: M, F -> 1, 0
         # LUNG_CANCER: YES, NO -> 1, 0
         
         self.data['GENDER'] = self.data['GENDER'].map({'M': 1, 'F': 0})
         self.data['LUNG_CANCER'] = self.data['LUNG_CANCER'].map({'YES': 1, 'NO': 0})
         
-        # 其他列是 2(Yes) 和 1(No)，我们将它们转换为 1 和 0
-        # [Part 2] Requirement: List comprehension (用于筛选需要转换的列)
+        # The other columns are 2 (Yes) and 1 (No), which we convert to 1 and 0.
+        # [Part 2] Requirement: List comprehension (Used to filter columns requiring conversion)
         columns_to_fix = [col for col in self.data.columns if col not in ['GENDER', 'AGE', 'LUNG_CANCER']]
         
         for col in columns_to_fix:
@@ -51,7 +51,7 @@ class PatientData:
         print("Data cleaning completed.")
 
     def get_features_and_target(self):
-        """分离特征(X)和目标(y)"""
+        """Separating features (X) and target (y)"""
         X = self.data.drop('LUNG_CANCER', axis=1)
         y = self.data['LUNG_CANCER']
         return X, y
@@ -66,7 +66,7 @@ class PatientData:
 if __name__ == "__main__":
     # 测试
     try:
-        # 假设你在项目根目录下运行，需要根据实际路径调整
+        # Assuming you are running from the project root directory, adjust the path accordingly based on your actual setup.
         pd_obj = PatientData("data/survey lung cancer.csv")
         pd_obj.clean_data()
         print(pd_obj)
