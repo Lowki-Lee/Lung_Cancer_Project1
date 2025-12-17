@@ -13,11 +13,11 @@ The project covers key concepts including:
 * Interactive user input
 * Data visualization with Matplotlib and Seaborn
 
----
+
 
 ## Project Structure
 
-```
+
 Lung_Cancer_Project1/
 │
 ├── data/
@@ -36,7 +36,7 @@ Lung_Cancer_Project1/
 └── README.md                     # Project documentation
 ```
 
----
+
 
 ## File Descriptions
 
@@ -54,7 +54,6 @@ This module is responsible for managing and preprocessing the dataset:
 
 This module provides clean and structured data for model training.
 
----
 
 **2. cancer_predictor.py**
 
@@ -68,7 +67,7 @@ This module handles model-related tasks:
 
 This is the core machine learning component of the project.
 
----
+
 
 **3. patient_input.py**
 
@@ -87,7 +86,7 @@ This module enables user interaction for predicting lung cancer risk:
 
 This module makes the model usable for end users.
 
----
+
 
 **4. main.ipynb**
 
@@ -99,9 +98,9 @@ This module makes the model usable for end users.
 * Evaluates model performance
 * Runs interactive patient risk prediction
 
-👉 It is recommended that instructors or graders run this notebook directly.
+ It is recommended that instructors or graders run this notebook directly.
 
----
+
 
 ## How to Run the Project
 
@@ -112,7 +111,7 @@ This module makes the model usable for end users.
 3. Run all cells sequentially
 4. Follow the prompts to input patient data and view predictions
 
----
+
 
 ### Option 2: Run via Command Line
 
@@ -150,17 +149,16 @@ The model uses **15 features** in the following order:
 
 All features are converted into binary or numerical values before prediction.
 
----
+
 
 ## Example Output
 
-```
 Prediction result:
   Probability of disease: 73.42%
   Simple risk recommendation: High risk
 ```
 
----
+
 
 ## Technology Stack
 
@@ -170,7 +168,7 @@ Prediction result:
 * matplotlib, seaborn
 * Jupyter Notebook
 
----
+
 
 ## Notes
 
@@ -178,7 +176,7 @@ Prediction result:
 * New patient input must contain exactly 15 features
 * This project is for educational purposes only and does not provide medical advice
 
----
+
 
 ## Author
 
