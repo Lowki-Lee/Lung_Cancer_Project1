@@ -94,3 +94,27 @@ def _ask_manual_input(feature_names: List[str]) -> Dict[str, Any]:
                     val = raw
         patient[feat] = val
     return patient
+
+def _read_patient_from_csv(path: str) -> Dict[str, Any]:
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"File not found: {path}")
+    df = pd.read_csv(path)
+    first_row = df.iloc[0]
+    patient: Dict[str, Any] = {}
+    for i in first_row.index:
+        if isinstance(first_row[i], (np.integer, int)):
+            if i in {"GENDER", "AGE"}:
+                patient[i] = int(first_row[i])
+            else:
+                if int(first_row[i]) == 1:
+                    patient[i] = 0
+                else:
+                    patient[i] = 1
+        else:
+            if first_row[i].lower() in {"y", "yes", "true", "t", "m", "male"}:
+                patient[i] = 1
+            elif first_row[i].lower() in {"n", "no", "false", "f", "female"}:
+                patient[i] = 0
+            else:
+                patient[i] = first_row[i]
+    return patient
