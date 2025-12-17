@@ -2,39 +2,45 @@
 
 ## Project Overview
 
-This project is a **Python-based lung cancer risk prediction system** using machine learning. It is designed for coursework and learning purposes, demonstrating the complete workflow from data preprocessing to model training, evaluation, and interactive prediction for new patients.
+This project is a Python-based system for predicting lung cancer risk using machine learning. It is designed for coursework and learning purposes, demonstrating the complete workflow from data preprocessing to model training, evaluation, and interactive prediction for new patients.
 
 The project covers key concepts including:
 
-* Object-Oriented Programming (OOP)
-* Data cleaning and preprocessing
-* Machine learning model training and evaluation
-* Exception handling
-* Interactive user input
-* Data visualization with Matplotlib and Seaborn
+   Object-Oriented Programming (OOP)
+ 
+& Data cleaning and preprocessing
+
+& Machine learning model training and evaluation
+
+& Exception handling
+
+&Interactive user input
+
+&Data visualization with Matplotlib and Seaborn
 
 
 
 ## Project Structure
 
 
+```
 Lung_Cancer_Project1/
-│
 ├── data/
 │   ├── survey lung cancer.csv   # Original lung cancer survey dataset (training data)
-│   └── test_data.csv             # Sample test data for prediction
+│   └── test_data.csv            # Sample test data for prediction
 │
 ├── src/
-│   ├── patient_data.py           # Data loading and preprocessing module
-│   ├── cancer_predictor.py       # Model training, evaluation, and prediction
-│   └── patient_input.py          # Interactive input for new patient prediction
+│   ├── patient_data.py          # Data loading and preprocessing module
+│   ├── cancer_predictor.py      # Model training, evaluation, and prediction
+│   └── patient_input.py         # Interactive input for new patient prediction
 │
 ├── tests/
-│   └── test_project.py           # Unit tests (if applicable)
+│   └── test_project.py          # Unit tests (if applicable)
 │
-├── main.ipynb                    # Main entry point (recommended)
-└── README.md                     # Project documentation
-```
+├── main.ipynb                   # Main entry point (recommended)
+└── README.md                    # Project documentation
+
+
 
 
 
@@ -129,7 +135,7 @@ data/test_data.csv
 
 ## Input Features (Order Matters)
 
-The model uses **15 features** in the following order:
+The model uses 15 features in the following order:
 
 1. GENDER
 2. AGE
