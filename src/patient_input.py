@@ -118,3 +118,20 @@ def _read_patient_from_csv(path: str) -> Dict[str, Any]:
             else:
                 patient[i] = first_row[i]
     return patient
+
+def run_patient_input(project: Any) -> Dict[str, Any]:
+    """
+    Interactive entry point: It can accept input in CSV format or manual input to build a single patient record.
+Call project.predict_new_patient(...) and print the probability as well as simple risk advice.
+This project must provide a callable function predict_new_patient(DataFrame) -> numerical/probability dictionary/array.
+    """
+    if not hasattr(project, "predict_new_patient"):
+        raise AttributeError("The provided project must have a 'predict_new_patient' method.")
+
+    print("Select input method:")
+    print("  1) Read from CSV (first row only)")
+    print("  2) Manual input (interactive)")
+    choice = input("Enter 1 or 2, then press Enter: ").strip()
+    if choice not in {"1", "2"}:
+        print("Invalid choice, defaulting to 2 (manual input).")
+        choice = "2"
