@@ -6,17 +6,12 @@ This project is a Python-based system for predicting lung cancer risk using mach
 
 The project covers key concepts including:
 
-   Object-Oriented Programming (OOP)
- 
-& Data cleaning and preprocessing
-
-& Machine learning model training and evaluation
-
-& Exception handling
-
-&Interactive user input
-
-&Data visualization with Matplotlib and Seaborn
+- Object-Oriented Programming (OOP)
+- Data cleaning and preprocessing
+- Machine learning model training and evaluation
+- Exception handling
+- Interactive user input
+- Data visualization with Matplotlib and Seaborn
 
 
 
@@ -82,7 +77,7 @@ This module enables user interaction for predicting lung cancer risk:
 * Supports two input methods:
 
   * Read patient data from a CSV file (first row only)
-  * Manually input patient data via command line
+* Manually input patient data via command line（input y（yes）and n(no) for every feature other than gender(male or female) and age())
 * Automatically infers required feature names
 * Extracts probability values from different prediction output formats
 * Displays:
