@@ -151,3 +151,21 @@ This project must provide a callable function predict_new_patient(DataFrame) -> 
                 if not feature_names:
                     raise ValueError("No feature names provided.")
             patient_raw = _ask_manual_input(feature_names)
+
+    patient = []
+    for i in patient_raw:
+        patient.append(patient_raw[i])
+
+    predict_fn = getattr(project, "predict_new_patient")
+    if not callable(predict_fn):
+        raise TypeError("project.predict_new_patient is not callable.")
+    pred = predict_fn(patient)
+    prob = _extract_probability(pred)
+
+    prob_pct = prob * 100.0
+    risk = "High risk" if prob >= 0.5 else "Low risk"
+    print("\nPrediction result:")
+    print(f"  Probability of disease: {prob_pct:.2f}%")
+    print(f"  Simple risk suggestion: {risk}")
+
+    return {"probability": prob, "risk": risk, "patient_raw": patient_raw}
