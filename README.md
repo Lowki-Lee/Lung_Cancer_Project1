@@ -1,184 +1,107 @@
-# Lung Cancer Project
+# Lung Cancer Risk Prediction System
+Precented by Minhao Li & Zhonghao Guo
+# Project Overview
 
-## Project Overview
+This project aims to address the critical real-world problem of early lung cancer risk assessment. Lung cancer is one of the leading causes of cancer-related deaths globally. By utilizing machine learning techniques (Logistic Regression) on a dataset of physiological and lifestyle attributes, this tool allows users to:
 
-This project is a Python-based system for predicting lung cancer risk using machine learning. It is designed for coursework and learning purposes, demonstrating the complete workflow from data preprocessing to model training, evaluation, and interactive prediction for new patients.
+1. Analyze historical patient data.
 
-The project covers key concepts including:
+2. Train a predictive model to identify key risk factors.
 
-- Object-Oriented Programming (OOP)
-- Data cleaning and preprocessing
-- Machine learning model training and evaluation
-- Exception handling
-- Interactive user input
-- Data visualization with Matplotlib and Seaborn
+3. Assess the risk probability for new patients through an interactive interface.
 
+The solution is implemented in Python, adhering to Object-Oriented Programming (OOP) principles and modular software design.
 
+# Features
 
-## Project Structure
+Data Processing Pipeline: Automated data loading, cleaning, and feature encoding using the PatientData class.
 
+Machine Learning Model: Uses Logistic Regression (via Scikit-learn) to predict malignancy probability.
 
-```
-Lung_Cancer_Project1/
+Interactive Assessment: A robust user input module (PatientInput) that validates user responses and allows real-time risk prediction.
+
+Visualization: Generates confusion matrices to visualize model performance.
+
+Unit Testing: Includes Pytest cases to ensure data integrity and processing logic.
+
+# Project Structure
+
+The project is organized into modules for better maintainability:
+
+Lung_Cancer_Project/
+│
 ├── data/
-│   ├── survey lung cancer.csv   # Original lung cancer survey dataset (training data)
-│   └── test_data.csv            # Sample test data for prediction
+│   ├── survey lung cancer.csv    # Kaggle Dataset (Public Domain)
+│   └── test_data.csv             # Sample test data for prediction
 │
-├── src/
-│   ├── patient_data.py          # Data loading and preprocessing module
-│   ├── cancer_predictor.py      # Model training, evaluation, and prediction
-│   └── patient_input.py         # Interactive input for new patient prediction
+├── src/                          # Source Code Modules
+│   ├── patient_data.py           # Class: Handles data I/O and cleaning
+│   ├── cancer_predictor.py       # Class: Handles model training and prediction
+│   └── patient_input.py          # Class: Handles user interaction & validation
 │
-├── tests/
-│   └── test_project.py          # Unit tests (if applicable)
+├── tests/                        # Unit Tests
+│   └── test_project.py           # Pytest cases for data logic
 │
-├── main.ipynb                   # Main entry point (recommended)
-└── README.md                    # Project documentation
+├── main.ipynb                    # Main entry point (Jupyter Notebook)
+├── README.md                     # Project documentation
+└── requirements.txt              # List of dependencies
+
+# Usage
+
+The main program is encapsulated in a Jupyter Notebook for easy visualization and interaction.
+
+1. Open the Notebook:
+  Launch Jupyter Notebook or VS Code and open main.ipynb.
+
+2. Run the Cells:
+  Execute the cells in order. The notebook will:
+
+  Initialize the CancerPredictor and PatientData classes.
+
+  Clean and split the dataset.
+
+  Train the Logistic Regression model.
+
+  Display the accuracy score and Confusion Matrix.
+
+3. Interactive Prediction:
+  At the end of the notebook, an interactive loop will start. You will be prompted to enter patient details (e.g., Age, Smoking history, Anxiety levels).
+
+  The PatientInput module will validate your inputs (ensuring they are numbers/within range).
+
+  The system will output the Probability of Lung Cancer based on the trained model.
+
+# Testing
+
+This project uses pytest to ensure the robustness of data processing. To run the tests:
+
+1. Open your terminal in the project root directory.
+
+2. Run the following command:
+
+python -m pytest
 
 
+3. You should see a success message (e.g., 2 passed) indicating the data loading and cleaning logic is correct.
 
+# Libraries Used 
 
+Pandas: For data manipulation and CSV I/O.
 
-## File Descriptions
+Scikit-learn: For Logistic Regression model and metrics.
 
-**1. patient_data.py**
+Matplotlib & Seaborn: For data visualization (Heatmaps).
 
-This module is responsible for managing and preprocessing the dataset:
+OS & Sys: For robust file path management.
 
-* Loads data from CSV files with exception handling
-* Removes duplicate records
-* Encodes categorical values into numerical format
+Pytest: For unit testing.
 
-  * GENDER: M / F → 1 / 0
-  * YES / NO or 2 / 1 → 1 / 0
-* Separates features (X) and target variable (y)
+# Contributors 
 
-This module provides clean and structured data for model training.
+[Minhao Li]: Project Structure, Model Implementation, Data Logic. 
+Email: mli105@stevens.edu
 
+[Zhonghao Guo]: Input Validation Module (patient_input.py), User Interaction flow.
+Email: guozhonghao2002@gmail.com
 
-**2. cancer_predictor.py**
-
-This module handles model-related tasks:
-
-* Trains a Logistic Regression model
-* Splits data into training and testing sets
-* Evaluates model performance using accuracy and classification report
-* Visualizes results using a confusion matrix (Matplotlib & Seaborn)
-* Provides a `predict_new_patient()` method for risk prediction
-
-This is the core machine learning component of the project.
-
-
-
-**3. patient_input.py**
-
-This module enables user interaction for predicting lung cancer risk:
-
-* Supports two input methods:
-
-  * Read patient data from a CSV file (first row only)
-* Manually input patient data via command line（input y（yes）and n(no) for every feature other than gender(male or female) and age())
-* Automatically infers required feature names
-* Extracts probability values from different prediction output formats
-* Displays:
-
-  * Probability of lung cancer (percentage)
-  * Simple risk recommendation (High / Low risk)
-
-This module makes the model usable for end users.
-
-
-
-**4. main.ipynb**
-
-**Function: Main entry point (recommended way to run the project)**
-
-* Initializes the cancer predictor
-* Performs data preprocessing
-* Trains the machine learning model
-* Evaluates model performance
-* Runs interactive patient risk prediction
-
- It is recommended that instructors or graders run this notebook directly.
-
-
-
-## How to Run the Project
-
-### Option 1: Run with Jupyter Notebook (Recommended)
-
-1. Open the project in VS Code or Jupyter Notebook
-2. Open `main.ipynb.`
-3. Run all cells sequentially
-4. Follow the prompts to input patient data and view predictions
-
-
-
-### Option 2: Run via Command Line
-
-```bash
-python src/patient_input.py
-```
-
-When using CSV input, ensure the file path is correct, for example:
-
-```
-data/test_data.csv
-```
-
----
-
-## Input Features (Order Matters)
-
-The model uses 15 features in the following order:
-
-1. GENDER
-2. AGE
-3. SMOKING
-4. YELLOW_FINGERS
-5. ANXIETY
-6. PEER_PRESSURE
-7. CHRONIC DISEASE
-8. FATIGUE
-9. ALLERGY
-10. WHEEZING
-11. ALCOHOL CONSUMING
-12. COUGHING
-13. SHORTNESS OF BREATH
-14. SWALLOWING DIFFICULTY
-15. CHEST PAIN
-
-All features are converted into binary or numerical values before prediction.
-
-
-
-## Example Output
-
-Prediction result:
-  Probability of disease: 73.42%
-  Simple risk recommendation: High risk
-```
-
-
-
-## Technology Stack
-
-* Python 3.x
-* pandas, numpy
-* scikit-learn
-* matplotlib, seaborn
-* Jupyter Notebook
-
-
-
-## Notes
-
-* Incorrect CSV file paths may cause `FileNotFoundError.`
-* New patient input must contain exactly 15 features
-* This project is for educational purposes only and does not provide medical advice
-
-
-
-## Author
-
-This project was developed as a coursework and learning project to demonstrate Python programming, data processing, and basic machine learning techniques.
+# This project was developed for the AAI/CPE/EE 551 course.
