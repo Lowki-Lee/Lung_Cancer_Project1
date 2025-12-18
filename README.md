@@ -70,6 +70,8 @@ The main program is encapsulated in a Jupyter Notebook for easy visualization an
 3. Interactive Prediction:
   At the end of the notebook, an interactive loop will start. You will be prompted to enter patient details (e.g., Age, Smoking history, Anxiety levels).
 
+  Please enter your age as a number， enter male or female for gender， enter y（yes）or n（no）for other features such as Smoking history, Anxiety levels 
+
   The PatientInput module will validate your inputs (ensuring they are numbers/within range).
 
   The system will output the Probability of Lung Cancer based on the trained model.
@@ -105,6 +107,6 @@ Pytest: For unit testing.
 Email: mli105@stevens.edu
 
 [Zhonghao Guo]: Input Validation Module (patient_input.py), User Interaction flow.
-Email: guozhonghao2002@gmail.com
+Email: zguo18@stevens.edu
 
 # This project was developed for the AAI/CPE/EE 551 course.
