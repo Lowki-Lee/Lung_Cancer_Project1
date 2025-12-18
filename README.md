@@ -24,6 +24,7 @@ Visualization: Generates confusion matrices to visualize model performance.
 
 Unit Testing: Includes Pytest cases to ensure data integrity and processing logic.
 
+```
 # Project Structure
 
 The project is organized into modules for better maintainability:
@@ -46,6 +47,8 @@ Lung_Cancer_Project/
 ├── README.md                     # Project documentation
 └── requirements.txt              # List of dependencies
 
+
+```
 # Usage
 
 The main program is encapsulated in a Jupyter Notebook for easy visualization and interaction.
